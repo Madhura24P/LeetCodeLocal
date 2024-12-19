@@ -12,28 +12,16 @@ public class RemoveduplicatesSortArray_2 {
 	}
 	
 	 public static int removeDuplicates(int[] nums) {
-		 
-		 int count=1;
-		 int sl=0;
-		 int ft=2;
-		 while( ft<nums.length && sl<nums.length)
-		 {
-			 if(nums[sl]!=nums[ft])
-			 {
-				 nums[ft]=nums[sl];
-				 count++;
-				 sl=sl++;
-				 ft=ft++;
-			 }
-			 else
-			 {
-				 sl=++sl;
-			 }
-		 }
-				 System.out.println(Arrays.toString(nums));
-		 
-		 
-		 return   count;
+		 int k = 2;
+
+	        for (int i = 2; i < nums.length; i++) {
+	            if (nums[i] != nums[k - 2]) {
+	                nums[k] = nums[i];
+	                k++;
+	            }
+	        }
+
+	        return k; 
 	        
 	    }
 
