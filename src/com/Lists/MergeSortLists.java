@@ -1,6 +1,5 @@
 package com.Lists;
 
-import com.TwoPointer.Easy.RemoveDupSortedList.ListNode;
 
 public class MergeSortLists {
 	
