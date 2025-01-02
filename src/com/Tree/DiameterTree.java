@@ -3,6 +3,8 @@ package com.Tree;
 import com.Tree.SameTree.TreeNode;
 
 public class DiameterTree {
+	
+static 	int max=Integer.MIN_VALUE;
 	public static class TreeNode {
 	     int val;
 	      TreeNode left;
@@ -36,29 +38,27 @@ public class DiameterTree {
 public static int diameterOfBinaryTree(TreeNode root) {
 	int len=0;
 	
-	len=helper(root,0);
+	len=helper(root);
 	return len;
         
     }
 
-private static int helper(TreeNode r,int depth)
+private static int helper(TreeNode r)
 {
-	int len=0;
+	int left=0 ,right=0;
 	
-	if(r==null)
+	if(r.left!=null)
 	{
-		return len;
-	}
-	if((r.left==null && r.right==null))
-	{
-		return -1;
+		left=helper(r.left);
 	}
 	
-	//depth=depth+1;
-	int depth_L=helper(r.left,depth+1);
-	int depth_R=helper(r.right,depth+1);
-	len=depth+Math.max(depth_R,depth_L);
-	return len;
+	if(r.right!=null)
+	{
+		right=helper(r.right);
+	}
+	
+	max=Math.max(max, +right+left);
+	return Math.max(left, right)+1;
 }
 
 }
