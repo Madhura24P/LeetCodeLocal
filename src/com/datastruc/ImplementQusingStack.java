@@ -1,4 +1,4 @@
-package com.stack;
+package com.datastruc;
 
 import java.util.Stack;
 
