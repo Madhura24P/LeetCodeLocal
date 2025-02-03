@@ -12,7 +12,7 @@ public class ImplementQusingStack {
     {
 		in_stack=new Stack<>();
 		out_stack=new Stack<>();
-		
+	
 	}
 	
 	private void transfer()
