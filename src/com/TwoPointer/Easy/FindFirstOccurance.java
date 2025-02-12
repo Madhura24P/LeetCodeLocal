@@ -20,7 +20,7 @@ public static int strStr(String haystack, String needle) {
 	{
 	
 		if(haystack.charAt(i)==needle.charAt(b_pointer))
-		{66
+		{
 			
 			while(b_pointer<needle.length())
 			{

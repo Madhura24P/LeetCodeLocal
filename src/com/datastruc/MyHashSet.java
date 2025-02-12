@@ -1,4 +1,4 @@
-6package com.datastruc;
+package com.datastruc;
 
 
 

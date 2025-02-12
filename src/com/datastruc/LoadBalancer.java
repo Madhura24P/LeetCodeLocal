@@ -62,6 +62,13 @@ LoadBalancer lb=new LoadBalancer();
 
 
 
+@Override
+	public String toString() {
+		return "LoadBalancer [servers=" + servers + "]";
+	}
+
+
+
 public class Server {
 	
 	private String ipAddress;
