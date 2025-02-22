@@ -6,7 +6,9 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BasicJava8 {
 
@@ -60,11 +62,42 @@ public class BasicJava8 {
 		
 		
 		
+		String s1="Hello## World###";
+		String s2="hi ##### morning";
+		computeString(s1);
+		computeString(s2);
+		
 		
 		
 		
 		
 
+	}
+	
+	public static void computeString(String s1)
+	{
+		if(s1.isBlank() || s1.isEmpty())
+		{
+			System.out.println("is blank ");
+		}
+		String s1_updted=Stream.of(s1.split(" ")).map((Function<String,String>) x ->{
+			StringBuilder sb=new StringBuilder();
+			if(x.contains("#"))
+			{
+			      int first=x.indexOf('#');
+			      int last=x.lastIndexOf('#');
+			      if(last-first+1>=3)
+			      {
+			    	  x=x.substring(0, first)+'#'+x.substring(last+1);
+			      }
+		    }
+			sb.append(x);
+			//System.out.println(sb);
+			return sb.toString();
+		}).collect(Collectors.joining(" "));
+		
+		System.out.println("updated s1:"+s1_updted);
+		
 	}
 
 }
