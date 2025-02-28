@@ -1,6 +1,7 @@
 package com.Array;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class IntersectionArray {
 
@@ -76,6 +77,19 @@ public int[] intersectionOptimized(int[] nums1, int[] nums2) {
         result[i] = resultList.get(i);
     }
     return result;
+}
+
+
+public void intersect_java8(int[] nums1,int[] nums2)
+{
+	List<Integer> nums1List=Arrays.stream(nums1).boxed().toList();
+    List<Integer> nums2List=Arrays.stream(nums2).boxed().toList();
+    
+    Set<Integer> numSet=nums1List.stream().filter(x->nums2List.contains(x)).
+    		collect(Collectors.toSet());
+    
+    numSet.stream().mapToInt(Integer::intValue).toArray();
+
 }
 
 }

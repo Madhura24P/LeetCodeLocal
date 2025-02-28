@@ -1,7 +1,11 @@
 package com.Array;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ThirdMaxNumber {
 
@@ -98,6 +102,26 @@ public static int thirdMaxOpt(int[] nums) {
         }
     }
     return max3 == null ? max1 : max3;
+}
+
+public void maxThird(int nums[])
+{
+	
+	Set<Integer> setNums=Arrays.stream(nums).boxed().collect(Collectors.toSet());
+	
+	Optional<Integer> third=setNums.stream().
+			sorted(Comparator.reverseOrder()).skip(2).findFirst();
+	
+	if(third.isPresent())
+	{
+		third.get();
+	}else
+	{
+		Arrays.stream(nums).boxed().
+		sorted(Comparator.reverseOrder()).findFirst();
+	}
+	
+	
 }
 
 }

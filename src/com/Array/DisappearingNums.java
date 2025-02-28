@@ -1,6 +1,8 @@
 package com.Array;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class DisappearingNums {
 
@@ -36,5 +38,28 @@ public class DisappearingNums {
 	     return res;
 		 
 	    }
+	 
+	 
+	 public void findNum_java8(int num[])
+	 {
+		 List<Integer> res=new ArrayList<>();
+		 List<Integer> listNum=Arrays.stream(num).boxed().toList();
+	     Map<Integer,Long> mapNum=listNum.stream().sorted().
+	    		 collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));	
+	     
+	     int len=num.length;
+	     
+	     for(int i=1;i<=len;i++)
+	     {
+	    	 if(!mapNum.containsKey(i))
+	    	 {
+	    		 res.add(i);
+	    	 }
+	     }
+	     
+	     
+	     
+	 
+	 }
 
 }

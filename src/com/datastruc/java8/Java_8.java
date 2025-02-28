@@ -19,8 +19,6 @@ public class Java_8 {
 		listEmp.add(new Employee(1,"Raj",17000,new Department("Sales")));
 		listEmp.add(new Employee(1,"Raj",7000,new Department("Accounts")));
 		listEmp.add(new Employee(1,"Raj",15000,new Department("IT")));
-		
-		//department wise count
 		Map<Department,Long> deptMap=listEmp.stream().collect(Collectors.groupingBy(Employee::getDept,Collectors.counting()));
 		deptMap.entrySet().stream().forEach(m-> System.out.println(m.getKey().getName()+":"+m.getValue()));
 		System.out.println("####################################################################");
@@ -31,7 +29,6 @@ public class Java_8 {
 		
 		System.out.println("####################################################################");
 		
-		//dept which has more than 3 emps
 		deptMap.entrySet().stream().filter(m->m.getValue()>3).forEach(m->System.out.println("Dept:"+m.getKey().getName()));
 		
 		System.out.println("####################################################################");

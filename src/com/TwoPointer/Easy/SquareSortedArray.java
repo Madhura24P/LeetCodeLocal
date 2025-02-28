@@ -1,5 +1,9 @@
 package com.TwoPointer.Easy;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class SquareSortedArray {
 
 	public static void main(String[] args) {
@@ -34,5 +38,15 @@ public class SquareSortedArray {
             return res;
         
     }
+	
+	
+	public void sortSQ(int nums[])
+	{
+		
+		List<Integer> sqList=Arrays.stream(nums).boxed().map(x->x*x).sorted().collect(Collectors.toList());
+		sqList.stream().mapToInt(x->x).toArray();
+		
+		
+	}
 
 }

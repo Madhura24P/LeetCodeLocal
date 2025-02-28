@@ -1,5 +1,9 @@
 package com.TwoPointer.Easy;
 
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 public class FindFirstOccurance {
 	
 	public static void main(String[] args) {
@@ -51,5 +55,20 @@ public static int strStr(String haystack, String needle) {
 	return -1;
         
     }
+
+
+public void firstOcc(String hay,String needle)
+{
+	
+	OptionalInt indexOpt = IntStream.range(0, hay.length() - needle.length() + 1)
+            .filter(i -> hay.substring(i, i + needle.length()).equals(needle))
+            .findFirst();
+if (indexOpt.isPresent()) {
+System.out.println("First occurrence of substring is at index: " + indexOpt.getAsInt());
+} else {
+System.out.println("Substring not found.");
+}
+	
+}
 
 }

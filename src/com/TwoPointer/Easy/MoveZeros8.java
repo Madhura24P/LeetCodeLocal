@@ -1,6 +1,9 @@
 package com.TwoPointer.Easy;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class MoveZeros8 {
 
@@ -36,5 +39,22 @@ public class MoveZeros8 {
         
         System.out.println(Arrays.toString(nums));
     }
+   
+   
+   public void moveZero_java8(int nums[])
+   {
+	   
+	   int[] nonZeroes = Arrays.stream(nums)
+               .filter(num -> num != 0)
+               .toArray();
+
+// Fill the original array with non-zero elements
+System.arraycopy(nonZeroes, 0, nums, 0, nonZeroes.length);
+
+// Fill the rest of the array with zeroes
+Arrays.fill(nums, nonZeroes.length, nums.length, 0);
+	   
+	   
+   }
 
 }

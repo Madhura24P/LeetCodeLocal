@@ -1,7 +1,6 @@
 package com.String;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.security.cert.X509Certificate;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -51,6 +50,20 @@ public class GroupAnagrams {
 			 
 			 return res;
 
+	  }
+	  
+	  public static void groupAnagrams_Java8(String str[])
+	  {
+		  char c[]=new char[6];
+		  String s="abc";
+		  Map<Object,List<String>> strMap=Arrays.stream(str).collect(
+				  Collectors.groupingBy( x->
+				  Arrays.stream(x.toLowerCase().split("")).sorted().collect(Collectors.toList())));
+		  
+		  List<List<String>> finalVal=(List<List<String>>) strMap.values();
+		  System.out.println(finalVal);
+		  
+		  
 	  }
 
 }

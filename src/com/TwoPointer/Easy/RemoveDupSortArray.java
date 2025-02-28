@@ -37,6 +37,12 @@ public class RemoveDupSortArray {
 	        
 	    }
 	 
-	 
+	 public void remDupl(int nums[])
+	 {
+		 
+		 Set<Integer> numSet=Arrays.stream(nums).boxed().collect(Collectors.toSet());
+		 numSet.size();
+		 
+	 }
 	
 }

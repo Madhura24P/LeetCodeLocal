@@ -1,5 +1,9 @@
 package com.String;
 
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 public class IsSubsequence {
 	
 
@@ -28,5 +32,19 @@ public class IsSubsequence {
 	        return s_p==s.length();
 	    }
 
+	 public static void isSub_java8(String s,String t)
+	 {
+		 
+		 OptionalInt indexOpt = IntStream.range(0, s.length() - t.length() + 1)
+		            .filter(i -> s.substring(i, i + t.length()).equals(t))
+		            .findFirst();
+		if (indexOpt.isPresent()) {
+		System.out.println("First occurrence of substring is at index: " + indexOpt.getAsInt());
+		} else {
+		System.out.println("Substring not found.");
+		}
+
+		 
+	 }
 
 }
