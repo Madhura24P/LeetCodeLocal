@@ -1,5 +1,7 @@
 package com.datastruc;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class ImplementQusingStack {
@@ -54,6 +56,8 @@ public class ImplementQusingStack {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Deque dq=new LinkedList<>();
+		//dq.p
 
 	}
 	
