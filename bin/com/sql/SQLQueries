@@ -1,0 +1,24 @@
+Second Highest Sal:
+
+select empId, 
+salary, rank() over (partitoin by sal order by enpId) as Rank
+from Employee
+
+select person,address,name,city
+from Employee e left join Address a
+as on e.EmployeeId=a.EmployeeId;
+
+
+select score,rank over(order by scores desc) as rank
+from scores.
+
+select email from Person
+group by email
+having count(*)>1;
+
+select name from Employee
+where id in (select ManagerId from Employee group by ManagerId having count(*)>=5);
+
+select Top1 salary from
+(select top 2 salary from Employee order by salary desc) 
+order by salary asc; 

@@ -1,13 +1,35 @@
 package com.String;
 
 import java.util.*;
+import java.util.Map.Entry;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FirstUniqChar {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String s="aadadaad";
-		firstUniqChar(s);
+		String s="loveleetcode";
+		//firstUniqChar(s);
+		
+		
+		
+		Optional<Entry<String,Long>> s1=Stream.of(s.split("")).collect(
+				Collectors.groupingBy(
+						Function.identity(),LinkedHashMap::new
+						,Collectors.counting())
+				).entrySet().stream().filter(x->x.getValue()==1).
+		findFirst();
+		
+		if(s1.isPresent())
+		{
+			System.out.println(s1.get().getKey());
+			System.out.println(s.indexOf(s1.get().getKey()));
+		}else
+		{
+			System.out.println(-1);
+		}
 
 	}
 	
@@ -44,5 +66,8 @@ public static int firstUniqChar(String s) {
         System.out.println(index);
         return index;
     }
+
+
+
 
 }

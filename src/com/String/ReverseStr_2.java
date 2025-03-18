@@ -1,10 +1,16 @@
 package com.String;
+
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 public class ReverseStr_2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String a="abcdefg";
 		reverseStr(a, 3);
+		
+
 
 	}
 	

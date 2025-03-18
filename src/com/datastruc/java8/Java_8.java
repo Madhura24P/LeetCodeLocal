@@ -27,8 +27,6 @@ public class Java_8 {
 		.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
 		System.out.println(d.getName());
 		
-		System.out.println("####################################################################");
-		
 		deptMap.entrySet().stream().filter(m->m.getValue()>3).forEach(m->System.out.println("Dept:"+m.getKey().getName()));
 		
 		System.out.println("####################################################################");

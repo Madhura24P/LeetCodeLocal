@@ -9,7 +9,18 @@ public class RemoveDupSortArray {
 	
 	public static void main(String[] args) {
 		int[] nums= {1,1,2,3,3,4};
-		int k=removeDuplicates(nums);
+		//int k=removeDuplicates(nums);
+		
+		int nums2[]=Arrays.stream(nums).boxed().collect(
+				Collectors.groupingBy(
+						Function.identity(),
+						LinkedHashMap::new,
+						Collectors.counting()
+						)
+				).entrySet().stream().map(x->x.getKey()).
+		        mapToInt(x->x).toArray();
+		
+		System.out.println(Arrays.toString(nums2));
 	
 	}
 	
