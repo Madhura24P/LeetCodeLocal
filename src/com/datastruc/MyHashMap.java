@@ -1,5 +1,12 @@
 package com.datastruc;
 
+
+//insertion,deletion and serach :o(1)
+//in case of large hash collision since linkedlist will be large : o(n) 
+//later when corrected to balanced tree:o(log n)
+
+//treemap o(log n) 
+
 class Node{
 	
 	int key;

@@ -2,6 +2,15 @@ package com.datastruc;
 
 import java.util.Arrays;
 
+//7ArrayList
+//Randon acceess:o(1)
+//insertion/deletion  at particular index: o(n) but at start or end o(1)
+//search o(n)5
+//post java8 : lazy initialization
+
+//LinkedList :
+//traversal,serach : o(n) insertion or deletion at head:o(1)
+
 public class MyArrayList {
 	
 	private Object mylist[];
@@ -29,6 +38,7 @@ public class MyArrayList {
 		if(mylist.length-actSize<=5)
 		{
 			increaseSize();
+			mylist[actSize++]=ob;
 		}else
 		{
 			mylist[actSize++]=ob;
