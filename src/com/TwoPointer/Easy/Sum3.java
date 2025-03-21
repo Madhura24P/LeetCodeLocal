@@ -1,4 +1,4 @@
-package com.Array;
+package com.TwoPointer.Easy;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -17,7 +17,7 @@ public class Sum3 {
 		 Set<List<Integer>> s=new HashSet<>();
 		 
 		 Arrays.sort(nums);
-		 //-4,-1,-1,0,1,2*
+		 //-4,-1,-1,0,1,2
 		
 		 int apt=0;
 		 int bpt=nums.length-1;
