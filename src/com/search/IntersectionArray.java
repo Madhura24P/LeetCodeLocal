@@ -1,4 +1,4 @@
-package com.Array;
+package com.search;
 
 import java.util.*;
 import java.util.stream.Collectors;

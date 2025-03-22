@@ -1,4 +1,4 @@
-package com.Array;
+package com.search;
 
 import java.util.*;
 
@@ -36,5 +36,28 @@ public  static int[] intersect(int[] nums1, int[] nums2) {
 	return finalList.stream().mapToInt(Integer::intValue).toArray();
         
     }
+
+
+public  static int[] intersect_8(int[] nums1, int[] nums2) {
+
+	List<Integer> num1List=Arrays.stream(nums1).boxed().toList();
+	List<Integer> num2List=Arrays.stream(nums2).boxed().toList();
+	List<Integer> res=new ArrayList<>();
+	
+	num1List.stream().forEach(x -> {
+		if(num2List.contains(x) && !res.contains(x))
+		{
+			int count=Math.min(Collections.frequency(num1List, x),
+            Collections.frequency(num2List, x));
+			while(count>0)
+			{
+				res.add(x);
+				count--;
+			}
+		}
+	});
+	
+	return res.stream().mapToInt(x->x).toArray();
+}
 
 }

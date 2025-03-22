@@ -15,7 +15,8 @@ public class ReverseOnlyLetters {
 		 
 		while(aPt<s.length())
 		 {
-			if(Character.isLetter(s.charAt(aPt)) && Character.isLetter(s.charAt(bPt)))
+			if(Character.isLetter(s.charAt(aPt)) 
+					&& Character.isLetter(s.charAt(bPt)))
 			{
 				ans.append(s.charAt(bPt));
 				aPt++;

@@ -6,8 +6,8 @@ public class RemoveElement {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int []nums = {3,1,3,3};
-				int val = 3;
+		int []nums = {0,1,2,2,3,4,2};
+				int val = 2;
 				removeElement(nums, val);
 
 	}
@@ -31,14 +31,10 @@ public static int removeElement(int[] nums, int val) {
 			//apointer++;
 			while(apointer<nums.length)
             {
-                if(nums[apointer]==val)
-                {
-                    apointer++;
-                }else
-                {
+              
                     apointer++;
                     break;
-                }
+                
             }
 		}
 	}

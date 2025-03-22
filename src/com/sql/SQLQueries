@@ -1,24 +1,50 @@
 Second Highest Sal:
-
-select empId, 
-salary, rank() over (partitoin by sal order by enpId) as Rank
+select empId,salary,
+rank() over (partitoin by sal order by enpId) as Rank
 from Employee
 
 select person,address,name,city
 from Employee e left join Address a
 as on e.EmployeeId=a.EmployeeId;
 
-
 select score,rank over(order by scores desc) as rank
 from scores.
 
 select email from Person
-group by email
-having count(*)>1;
+group by email having count(*)>1;
 
 select name from Employee
-where id in (select ManagerId from Employee group by ManagerId having count(*)>=5);
+where id in 
+(select ManagerId from Employee 
+group by ManagerId having count(*)>=5
+);
 
 select Top1 salary from
 (select top 2 salary from Employee order by salary desc) 
 order by salary asc; 
+
+Custmoer max order
+select cust_name
+from ( select cust_name,count(*) as cnt
+from orders group by cust_num) as e
+order by e.cnt desc
+limit 1;
+
+big counteries
+select name,population,area
+from world
+where area>=30000 or population>=25000;6
+
+classes with more than 5 students
+select class from courses
+group by classes
+having count(distinct student)>=5;
+
+select actr,dir
+from actordir
+group by act,dir
+having count(*)>=3;
+
+select productid,sum(qty) as total
+from sales
+group by product9
