@@ -104,6 +104,16 @@ public class LeetJava8 {
 		} else {
 		System.out.println("Substring not found.");
 		}
+		
+		List<String> fruits=List.of("orange","kiwi","apple","kiwi");
+		fruits.stream().distinct().collect(
+				Collectors.toMap(f->f, String::length)
+				).entrySet().stream().forEach(e->
+				{
+					System.out.println("key"+e.getKey()+" "+"Value"+e.getValue());
+				});
+		
+		
 
         
 	}

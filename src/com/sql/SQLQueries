@@ -1,7 +1,44 @@
 Second Highest Sal:
-select empId,salary,
-rank() over (partitoin by sal order by enpId) as Rank
-from Employee
+select max(sal) from emp where sal< select max(sal) from emp;
+select sal from
+(salect sal,denserank over (order by sal desc) as rank from emp)
+where rank=n;
+
+sal greater than aavg
+select * from emp where sal > (salect avg(sal) from emp)
+
+duplicate records
+select colName,count(*) from table group by colName having count(*)>1
+
+common from 2 trables
+select * ftom tb1 intersect select * from tb2
+
+lasdt 10 rec
+select * from emp order by empis desc limit 10;
+
+last 5 highest sal
+select * from emp oirder by sal desc limit 5;
+
+total sal
+saelect suim(sal)
+
+emp with no manager
+select * from emp wher managerId=null
+
+dept with highest number of emp
+select dept , count(*) from emp
+group by dept
+order by count(*) desc
+limit 1;
+
+count in each dept
+select dept,count(*) from e 
+group by dept;
+
+employee with max sal each dept
+select deptId,empId,sal
+from e where sal =
+(select max(sal) from e where deptId=e.deptId)
 
 select person,address,name,city
 from Employee e left join Address a
@@ -48,3 +85,15 @@ having count(*)>=3;
 select productid,sum(qty) as total
 from sales
 group by product9
+
+
+
+Order of execution of SQL:
+1.FROM Clause
+2.WHERE Clause
+3.GROUP By Clause
+4.HAVING Clause
+5.Select Clause
+6.Distinct Clause
+7.Order by clause
+8.Limit/offset
