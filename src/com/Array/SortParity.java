@@ -1,6 +1,8 @@
 package com.Array;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class SortParity {
 
@@ -8,6 +10,7 @@ public class SortParity {
 		// TODO Auto-generated method stub
 		int []nums = {3,1,2,4};
 		sortArrayByParity(nums);
+		sortParity_8(nums);
 
 	}
 	
@@ -31,9 +34,21 @@ public static int[] sortArrayByParity(int[] nums) {
 		p++;
 	}
 	
-	System.out.println(Arrays.toString(res));
+	//System.out.println(Arrays.toString(res));
 	return res;
         
     }
+
+public static void sortParity_8(int nums[])
+{
+	List<Integer> res=
+			Stream.concat(
+			Arrays.stream(nums).boxed().toList().stream().filter(x->x%2==0),
+			Arrays.stream(nums).boxed().toList().stream().filter(x->x%2!=0)).
+			toList();
+	System.out.println(res);
+	res.stream().mapToInt(x->x).toArray();
+	
+}
 
 }

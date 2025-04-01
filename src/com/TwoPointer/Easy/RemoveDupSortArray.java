@@ -20,7 +20,7 @@ public class RemoveDupSortArray {
 				).entrySet().stream().map(x->x.getKey()).
 		        mapToInt(x->x).toArray();
 		
-		System.out.println(Arrays.toString(nums2));
+		System.out.println(Arrays.toString(nums2));//uniq nums
 	
 	}
 	

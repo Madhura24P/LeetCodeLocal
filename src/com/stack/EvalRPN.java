@@ -1,4 +1,4 @@
-package com.Array;
+package com.stack;
 
 import java.util.Arrays;
 import java.util.List;
