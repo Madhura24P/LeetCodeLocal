@@ -54,8 +54,6 @@ public class GroupAnagrams {
 	  
 	  public static void groupAnagrams_Java8(String str[])
 	  {
-		  char c[]=new char[6];
-		  String s="abc";
 		  Map<Object,List<String>> strMap=Arrays.stream(str).collect(
 				  Collectors.groupingBy( x->
 				  Arrays.stream(x.toLowerCase().split("")).sorted().collect(Collectors.toList())));

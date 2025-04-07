@@ -1,4 +1,4 @@
-package com.Array;
+package com.TwoPointer.Easy;
 
 import java.util.Arrays;
 
@@ -12,7 +12,7 @@ public class RotateArray {
 	}
 
 	 public void rotate(int[] nums, int k) {
-		 
+		 //k>num.length k=k%num.length
 		 rev(nums,0,nums.length-1);
 		 System.out.println(Arrays.toString(nums));
 		 rev(nums,0,k-1);

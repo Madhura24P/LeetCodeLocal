@@ -40,6 +40,12 @@ select deptId,empId,sal
 from e where sal =
 (select max(sal) from e where deptId=e.deptId)
 
+***** second highest sal:
+select deptId,max(sal) as second highest
+from employee e
+where sal <( select max(sal) from employee where dept=e.dept)
+group by dept;
+
 select person,address,name,city
 from Employee e left join Address a
 as on e.EmployeeId=a.EmployeeId;
@@ -97,3 +103,13 @@ Order of execution of SQL:
 6.Distinct Clause
 7.Order by clause
 8.Limit/offset
+
+
+*****emp with salary higher than dept avg*****
+with dept_avg as (
+select deptId,avg(sal) as avg_sal
+from employee
+group by deptId)
+select E.* from employee e join dept_avg d
+on e.deptId=d.deptId
+where e.sal>d.avg_sal;

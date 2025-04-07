@@ -7,10 +7,11 @@ public class Allsubsets {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+int n[]= {1,2,3};
+subsets(n);
 	}
 	
-	 public List<List<Integer>> subsets(int[] nums) {
+	 public static List<List<Integer>> subsets(int[] nums) {
 	        List<List<Integer>> res = new ArrayList<>();
 	        List<Integer> subset = new ArrayList<>();
 
@@ -18,7 +19,7 @@ public class Allsubsets {
 	        return res;        
 	    }
 	 
-	 private void createSubset(int[] nums, int index, List<List<Integer>> res, List<Integer> subset) {
+	 private static void createSubset(int[] nums, int index, List<List<Integer>> res, List<Integer> subset) {
 	        if (index == nums.length) {
 	            res.add(new ArrayList<>(subset));
 	            return;

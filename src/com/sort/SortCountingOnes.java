@@ -1,4 +1,4 @@
-package com.sort;
+  package com.sort;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -36,7 +36,7 @@ public class SortCountingOnes {
 			map.put(n, count);
 		}
 	}
-	
+// nums>>1 & 1 -if last digit is 1 or not	
 	public static int ones(int num)
 	{
 		int count=0;
