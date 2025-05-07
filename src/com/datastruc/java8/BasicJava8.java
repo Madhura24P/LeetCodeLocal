@@ -60,6 +60,18 @@ public class BasicJava8 {
 		List<Integer> descList=l.stream().sorted(Comparator.reverseOrder()).toList();
 		System.out.println(descList);
 		
+
+		List<Integer> numbers=Arrays.asList(10,20,30);
+		int maxN=numbers.stream().max(Integer::compare).get();
+		numbers.stream().allMatch(n->n>5);
+		
+		List<String> nameS=Arrays.asList("Bob","anu");
+		List upperList=nameS.stream().map(String::toUpperCase).
+		collect(Collectors.toList());
+		
+		
+		
+		
 		
 		
 		String s1="Hello## World###";
@@ -97,6 +109,8 @@ public class BasicJava8 {
 		}).collect(Collectors.joining(" "));
 		
 		System.out.println("updated s1:"+s1_updted);
+		
+		
 		
 	}
 

@@ -34,6 +34,12 @@ public class Java_8 {
 		
 		listEmp.stream().collect(Collectors.groupingBy(Employee::getDept,Collectors.maxBy(Comparator.comparing(Employee::getSalary))))
 		.entrySet().stream().forEach(m->System.out.println(m.getKey().getName()+":"+m.getValue().get().getSalary()));;
+		System.out.println("####################################################################");
+	       //salary wise wort
+		
+		listEmp.stream().sorted(Comparator.comparing(Employee::getSalary)).
+		collect(Collectors.toList());
+	
 	}
 
 }

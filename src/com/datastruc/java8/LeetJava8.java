@@ -105,13 +105,62 @@ public class LeetJava8 {
 		System.out.println("Substring not found.");
 		}
 		
-		List<String> fruits=List.of("orange","kiwi","apple","kiwi");
+		List<String> fruits=List.of("orange","kiwi","apple","kiwi","pear");
 		fruits.stream().distinct().collect(
 				Collectors.toMap(f->f, String::length)
 				).entrySet().stream().forEach(e->
 				{
 					System.out.println("key"+e.getKey()+" "+"Value"+e.getValue());
 				});
+		
+		List<String> fruitsList=List.of("orange","kiwi","apple","kiwi","pear");
+		fruits.stream().distinct().collect(
+				Collectors.groupingBy(String::length,Collectors.toList())
+				).entrySet().stream().forEach(e->
+				{
+					System.out.println("key"+e.getKey()+" "+"Value"+e.getValue());
+				});
+		
+		List<String> words=Arrays.asList("madam","java");
+		words.stream().filter(w-> w.equals(
+				new StringBuilder(w).reverse().toString())).
+		collect(Collectors.toList());
+		
+		String truncS="how are you";
+		
+		String trunc=Stream.of(truncS.split(" ")).limit(2).collect(Collectors.joining(" "));
+		System.out.println(trunc);
+		
+		//kth distinct string
+		String arrS[]= {"d","b","b","a"};
+		int k=2;
+		Arrays.stream(arrS).collect(
+				Collectors.groupingBy(Function.identity(),
+						LinkedHashMap::new,Collectors.counting()))
+		        .entrySet().stream().filter(x->x.getValue()==1).
+		        map(x->x.getKey()).toList().stream().skip(k-1).
+		        findFirst().orElse("");
+		
+		//smallestIndex
+		int arrInd[]= {0,1,2};
+		int resInd=IntStream.range(0, arrInd.length).
+		filter(x-> x%10==arrInd[x]).findFirst().orElse(-1);
+		
+		//Common Words once
+		String words1[]= {"leetcode","hi"};
+		String words2[]= {"hi","hi","leetcode"};
+		
+		Map<String,Long> m1=Arrays.stream(words1).
+				collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+		Map<String,Long> m2=Arrays.stream(words2).
+				collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+		
+		List<String> listW=m1.entrySet().stream().
+				filter(x->
+		m2.containsKey(x.getKey()) && m2.get(x.getKey())==x.getValue()
+		).map(x->x.getKey()).toList();
+		
+		listW.size();
 		
 		
 

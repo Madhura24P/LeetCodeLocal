@@ -1,4 +1,40 @@
-Second Highest Sal:
+*****Total Sales for each category*****
+select product_id,category_id,sales,
+sum(sales) over (partition by category_id) as category_total_sales
+from sales_data;
+
+*****Product details: Total sale for each product*****
+select p.product_name,c.category_name,
+(select sum(sales) from sales_data sd where sd.product_id=p.product_id)
+as total_product_sales
+from
+products p inner join categories c on p.category_id=c.category_id;
+
+*****Rank by sales*****
+select product_id,category_id,
+rank() over (partition by category order by sales desc) as rank_by_sales
+from sales_data;
+
+*****Retrieve emp with corresponding manager*****
+select e1.employee_name as employee,e2.employee_name as manager
+from employees e1 inner join employees e2 
+on e1.manager_id=e2.employee_id;
+
+*****Max prev order*****
+select cust_id,order_id,order_date,total_amount,
+(
+select max(total_amount) from orders o2
+where o2.cust_id=o1.cust_id
+and o2.order_date<o1.order_date
+) as prev_max_order
+from orders o1;
+
+*****
+
+
+
+
+*****Second Highest Sal:
 select max(sal) from emp where sal< select max(sal) from emp;
 select sal from
 (salect sal,denserank over (order by sal desc) as rank from emp)
