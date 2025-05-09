@@ -1,4 +1,4 @@
-package com.Array;
+package com.TwoPointer.Easy;
 
 public class Maxcards {
 
