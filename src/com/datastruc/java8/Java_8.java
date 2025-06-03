@@ -33,7 +33,7 @@ public class Java_8 {
        //Dept wise highest salary
 		
 		listEmp.stream().collect(Collectors.groupingBy(Employee::getDept,Collectors.maxBy(Comparator.comparing(Employee::getSalary))))
-		.entrySet().stream().forEach(m->System.out.println(m.getKey().getName()+":"+m.getValue().get().getSalary()));;
+		.entrySet().stream().forEach(m->System.out.println(m.getKey().getName()+":"+m.getValue().get().getSalary()));
 		System.out.println("####################################################################");
 	       //salary wise wort
 		

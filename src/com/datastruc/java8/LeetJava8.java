@@ -2,11 +2,14 @@ package com.datastruc.java8;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalInt;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collector;
@@ -60,7 +63,7 @@ public class LeetJava8 {
         List<List<Integer>> res=map.entrySet().stream().map(m->m.getValue()).collect(Collectors.toList());
         System.out.println(res);
         
-        //Find occur of each char
+        //Find occur of each char62
         String s3="Mississippi";
         Map<String,Long> mapChar=Stream.of(s3.split("")).
         		collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
@@ -162,9 +165,53 @@ public class LeetJava8 {
 		
 		listW.size();
 		
+		//count negative numbers
+		int [][] arrN= {{4,3,2,-1},{3,2,1,-1},{1,1,-1,-2},{-1,-1,-2,-3}};
+		int [] arrN_flat=Arrays.stream(arrN).flatMapToInt(Arrays::stream).sorted().toArray();
+		long countN=Arrays.stream(arrN_flat).boxed().filter(x->x<0).count();
+		//Integer.valueOf(countN);
+		System.out.println(countN);
+		
+		//Capitalize Tile
+		String cap="For oF EaCH word";
+		String resultCap=Stream.of(cap.split(" ")).
+		map(sL-> sL.toLowerCase()).
+		map(sC-> {
+			if(sC.length()>2) {
+			 sC=Character.toUpperCase(sC.charAt(0))+sC.substring(1);
+			}
+			return sC;
+			}
+		)
+		.collect(Collectors.joining(" "));
+		System.out.println(resultCap);
+		
+		//First letter to appear twice
+		String rep="addchh";
+		String char_rep=Stream.of(rep.split("")).collect(Collectors.groupingBy
+				(Function.identity(),LinkedHashMap::new,
+				Collectors.counting()))
+		.entrySet().stream().
+		filter(e->e.getValue()>=2).
+		findFirst().get().getKey();
+		System.out.println(char_rep);
+		
+		Set<Character> sRep=new HashSet<>();
+        Optional<String> cRep=Stream.of(rep.split("")).filter(x->!sRep.add(x.charAt(0))).findFirst();
+		
+		System.out.println(cRep.get());
+		
+		Map<String,Integer> mapHeight=new HashMap<>();
+		
+		mapHeight.put("Marie", 180);
+		mapHeight.put("Emma", 165);
+		
+		List<String> sortHt=mapHeight.entrySet().stream().
+				sorted(Map.Entry.<String,Integer>comparingByValue().reversed()).
+		map(x->x.getKey()).collect(Collectors.toList());
+		sortHt.toArray(new String[0]);
 		
 
-        
+		}    
 	}
 
-}
