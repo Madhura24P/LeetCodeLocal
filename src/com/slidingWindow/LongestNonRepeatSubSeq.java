@@ -79,6 +79,7 @@ public class LongestNonRepeatSubSeq {
 			    	 {
 			    		 break;
 			    	 }
+			    	 set.add(s.charAt(bpt));
 			    	 bpt++;
 						 
 					 }

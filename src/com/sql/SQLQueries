@@ -147,5 +147,8 @@ select deptId,avg(sal) as avg_sal
 from employee
 group by deptId)
 select E.* from employee e join dept_avg d
-on e.deptId=d.deptId
+on e.deptId=d.deptId  
 where e.sal>d.avg_sal;
+
+
+
