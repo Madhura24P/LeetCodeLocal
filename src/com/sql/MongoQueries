@@ -1,0 +1,77 @@
+db.createCollections(collectionName,options)
+db.collectionName.drop();
+Types
+--bson,json,int,boolean,double,arrays,obj,null,date,Timestamp,ObjId,Code
+--b=so0n has date,Ts,Obj
+Insert
+db.<collection-name>.insert({"name":"Java"})
+db.<collction-name>.insertMany( {"name":"Ram"} ,{"name":"Sita"})
+_id is unique key 24 char
+Update
+db.<collection-name>.update({"name":"Ram"},{$set :{"mobile":"12.3456","isActive":true}})
+db.<collection-name>.updateMany({"active":true},{$set :{"state":"Maharashtra"}})
+Find
+db.collection.find();-- finds all collections
+db.findOne();-- finds the first doc in collection
+db.find({"key1":"value1","key2":"val2"}) --by setting query conditions 
+db.findOneAndReplace({"key1":"value1","key2":"val2"},<replacement>)
+db.findOneAn+dDelete({"key1":"value1","key2":"val2"})
+Delete
+db.<collection-name>.deleteOne({"_id":"1235446"})
+db.<collection-name>.deleteMany({"isActive":false})
+Queries:
+Equality eq
+db.<collection-name>.find({"tax" : "30","salary" : "120000" })
+
+Less Than lt
+db.<collection-name>.find({"tax" : {$lt :"30"},"salary" : "120000" })
+
+Less Than equal lte
+db.<collection-name>.find({"tax" : {$lte :"30"},"salary" : "120000" })
+
+Greater Than gt
+db.<collection-name>.find({"tax" : {$gt :"30"},"salary" : "120000" })
+
+Greater Than Equal gte
+db.<collection-name>.find({"tax" : {$gte :"30"},"salary" : "120000" })
+
+Not Equal 
+And $and
+db.<collection-name>.find({$and : [ { "tax" :"30"} ,{"salary" :"120000"}]})
+
+Or $or
+db.<collection-name>.find({$or : [ { "tax" :"30"} ,{"salary" :"120000"}]})
+
+select 
+db.<collection-name>.find({condition},{"city" : 1 ,"salary" : 0}) --get city key from all docs
+db.<collection-name>.find({"tax":{$lte:"30"}},{"city":1,"tax":1 , "_id": 0, "name" :1})
+
+Aggregate
+$count
+$group
+$limit
+$lookup
+$match
+$merge
+$sort
+$project
+$unwind
+$unset
+
+db.<collection-name>.aggregate([ 
+{$group : {"_id":"city"}}
+{$sort : {"name":1}}
+{$limit : 3} 
+ ]);
+
+limit
+db.<collection-name>.find().limit(4)
+
+skip
+db.<collection-name>.find().skip(3)
+
+sort
+db.<collection-name>.find().sort({"name" :1})
+
+index
+db.<collection-name>.ensureIndex({"name":1})

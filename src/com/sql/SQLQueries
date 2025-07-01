@@ -29,92 +29,86 @@ and o2.order_date<o1.order_date
 ) as prev_max_order
 from orders o1;
 
-*****
-
-
-
-
-*****Second Highest Sal:
+*****Second Highest Sal*****
 select max(sal) from emp where sal< select max(sal) from emp;
 select sal from
 (salect sal,denserank over (order by sal desc) as rank from emp)
 where rank=n;
 
-sal greater than aavg
+*****Sal greater than Avg*****
 select * from emp where sal > (salect avg(sal) from emp)
 
-duplicate records
+*****Duplicate records*****
 select colName,count(*) from table group by colName having count(*)>1
 
-common from 2 trables
+*****common from 2 tables*****
 select * ftom tb1 intersect select * from tb2
 
-lasdt 10 rec
-select * from emp order by empis desc limit 10;
+*****Last 10 rec*****
+select * from emp order by empid desc limit 10;
 
-last 5 highest sal
+*****Last 5 highest sal*****
 select * from emp oirder by sal desc limit 5;
 
-total sal
-saelect suim(sal)
+*****Emp with no manager*****
+select * from emp where managerId=null
 
-emp with no manager
-select * from emp wher managerId=null
-
-dept with highest number of emp
+*****Dept with highest number of emp*****
 select dept , count(*) from emp
 group by dept
 order by count(*) desc
 limit 1;
 
-count in each dept
+*****Count in each Dept*****
 select dept,count(*) from e 
 group by dept;
 
-employee with max sal each dept
+*****Employee with max sal each dept*****
 select deptId,empId,sal
 from e where sal =
 (select max(sal) from e where deptId=e.deptId)
 
-***** second highest sal:
+******Second highest sal*****
 select deptId,max(sal) as second highest
 from employee e
 where sal <( select max(sal) from employee where dept=e.dept)
 group by dept;
 
+select score,rank over(order by scores desc) as rank
+from scores.
+
+select Top1 salary from
+(select top 2 salary from Employee order by salary desc) 
+order by salary asc; 
+
+*****Left Join*****
 select person,address,name,city
 from Employee e left join Address a
 as on e.EmployeeId=a.EmployeeId;
 
-select score,rank over(order by scores desc) as rank
-from scores.
-
+*****Group By*****
 select email from Person
 group by email having count(*)>1;
 
+*****SubQuery*****
 select name from Employee
 where id in 
 (select ManagerId from Employee 
 group by ManagerId having count(*)>=5
 );
 
-select Top1 salary from
-(select top 2 salary from Employee order by salary desc) 
-order by salary asc; 
-
-Custmoer max order
+*****Custmer max order*****
 select cust_name
 from ( select cust_name,count(*) as cnt
 from orders group by cust_num) as e
 order by e.cnt desc
 limit 1;
 
-big counteries
+*****Big counteries*****
 select name,population,area
-from world
-where area>=30000 or population>=25000;6
+from world where area>=30000 or population>=25000;
 
-classes with more than 5 students
+*****classes with more than 5 students
 select class from courses
 group by classes
 having count(distinct student)>=5;
@@ -126,10 +120,8 @@ having count(*)>=3;
 
 select productid,sum(qty) as total
 from sales
-group by product9
-
-
-
+group by product
+*************************************************************************
 Order of execution of SQL:
 1.FROM Clause
 2.WHERE Clause
@@ -150,5 +142,243 @@ select E.* from employee e join dept_avg d
 on e.deptId=d.deptId  
 where e.sal>d.avg_sal;
 
+*****And OR*****
+select Name from table where Age>10 and City='Pune'
+select Name from table where Age>10 or city='Pune'
+
+*****CaseInSelect*****
+Select id,itenId,price,
+ CASE WHEN price<10 THEN 'CHEAP'
+ CASE WHEN price>20 THEN 'AFFORDABLE'
+ ELSE 'EXPENSIVE'
+ END AS priceRating
+From ItemSales
+
+*****CaseToCount*****
+Select count(id) as ItemsCount,
+SUM(
+  CASE priceRating when 'EXPENSICE' THEN 1
+  ELSE 0
+  END
+  ) as expensiveCount
+From ItemSales;
+
+*****CaseOrderBy*****
+Select * from Dept
+order by 
+Case DEPARTMENT
+ WHEN 'MARKETING' THEN 1
+ WHEN 'SALES' THEN 2
+ WHEN 'RESEARCH' THEN 3
+ ELSE 4
+ END,
+ CITY;
+ 
+*****CTE and Subquery*****
+WITH ReadyCars as
+(
+select * from Cars where status='READY'
+)
+Select model,totalCost from ReadyCars order by totalCost; 
+
+Select model,totalCost from 
+( Select * from Cars where status='READY' ) as ReadyCars
+order by totalCost;
+
+*****Function*****
+Create Function FirstWord (@input varchar(1000))
+returns varchar(1000)
+As 
+Begin 
+  Declare @output varchar(1000)
+  Set @output = substring(@input, 0, case charindex(' ', @input)
+  when 0 then len(@input)+1
+  else charindex(' ', @input)
+  End)
+Return @output
+End
+
+*****Select IN*****
+select * from Cars where totalCars in (100,200,300);
+
+*****Select Like*****
+select * from Employes where Fname like 'John%';
+
+*****Groupby with condition*****
+select custId,count(id) as numOfCars
+from Cars
+group by custId
+having count(id) >1
+
+*****Select between*****
+select * from ItemSales
+where saleDate between '2013-01-01' and '2013-05-01'
+
+*****Select Exists*****
+select * from Tb1 t where exists
+(select 1 from tb1 t1 where t.id=t1.id);
+
+*****Customer ordering only products 2,3*****
+select custId from orders
+where prodId in (2,3)
+group by custId 
+having count(distinct prodId)=2
+
+*****Find emp with No Dept*****
+select e.* from Employee e
+left join Department d
+on e.deptId=d.deptId
+where d.deptId is null
+
+*****Total revenue*****
+select prodId, sum(qty*price) as totalRevenue
+from Sales group by prodId
+
+****Count of orders per Cust*****
+select  custId,count(*) as ordercount
+from Orders group by custId
+
+*****emp joined in 2023*****
+select * from Employee where year(hireDate)=2023
+
+*****avg order per cust*****
+select custId,avg(totalAvg) as avgOrder
+from Orders group by custId
+
+*****latest order by cust*****
+select custId,max(orderDate) from Orders group by custId
+
+*****products never sold*****
+select prodId from Products p
+left join Sales s 
+on p.productId=s.productId
+where s.productId is null
+
+*****most selling product*****
+select top 1 productId, sum(qty) as TotalQty
+from sales 
+group by productId
+order by totalQty desc
+
+*****total revenue nd noOfOrders per region*****
+select region,sum(totalAmt) as totalRevenue , count(*) as orderCount
+from Orders group by region
+
+*****cust with more than 5 orders*****
+select count(*) as custCount
+from (
+select custId from Orders
+group by custId
+having count(*) >5
+) as subquery
+
+*****above avg total*****
+select * from Orders 
+where totalAmt > ( select avg(totalAmt) from Orders)
+
+*****Employee hired on weekends*****
+select * from employee where 
+datename(weekday,hireDate) in ('saturday','sunday')
+
+*****monthly sales revenue*****
+select format(orderDate,'yyyy-MM') as month,
+sum(totalAmt) as totalRevenue,
+count(orderId) as orderCount
+from Orders
+group by format(orderDate,'yyyy-MM')
+
+*****rank employee by salary within dept*****
+select employeeId,deptId,salary,
+rank() over (partition by deptId order by salary desc) as salaryRank
+from Employee
+
+*****customers ordering in every month of 2023*****
+select custId from Orders
+where year(orderDate)=2023
+group by custId
+having count(distinct format(orderDate,'yyyy-MM'))=12
+
+*****moving avg*****
+select orderDate,
+sum(totalAmt) over (order by 
+orderDate rows between 2 preceding and current row) as movingAvg
+from Orders
+
+*****first and last order date for cust*****
+select custId,
+min(orderDate) as firstOrder
+max(orderDate) as lastOrder
+from Orders
+group by custId
+
+***** cross join : product sales distribution*****
+with TotalRevenue as 
+(
+select sum(qty*price) as total from Sales
+)
+select s.productId,
+sum(s.qty*s.price) as revenue,
+sum(s.qty*s.price)*100/t.total as revenuePercent
+from Sales s
+cross join TotalRevenue t
+group by s2.productId,t.total
+
+*****Lag: customers who purchased 2 consecutive days*****
+with cte as 
+(
+select custId,orderDate,
+lag(orderDate) over (partition by custId order by orderDate) as prevOrder
+from Orders
+)
+select custId,orderDate,prevOrder
+from cte 
+where 
+datediff(day,prevOrder,orderDate)=1
+
+*****customers with no order for last 6 months*****
+select custId
+from Orders
+group by custId
+having max(orderDate)<dateAdd(month,-6,getdate())
+
+*****cumulative revenue*****
+select orderDate,
+sum(totalAmt) over (order by orderDate) as cumRevenue
+from Orders
+
+*****Topperforming Depts based on Avg Salary*****
+select deptId,avg(salary) as avg_salary
+from Employee
+group by deptId
+order by avg_salary desc
+
+*****customer list ordering more than avg*****
+with cust_orders as 
+(
+select custId,count(*) as orderCount
+from Orders
+group by custId
+)
+select * from cust_orders
+where orderCount > (select avg(orderCount) from cust_orders)
+
+*****FirstOrder Total *****
+with first_order as
+(
+select custId,min(orderDate) as firstOrderDate
+from Orders group by custId
+)
+select sum(o.totalAmt) as newCustRevenue
+from Orders o join first_order f
+on o.custId=f.custId
+where o.orderDate=f.firstOrderDate
 
 
+*****percentage of emp in each dept*****
+select deptId,count(*) as empCount,
+count(*)*100/(select count(*) from Employee) as pct
+from Employee
+group by deptId
+
+*****max salary diff within each dept*****
+select dept,max(salary)-min(salary)
