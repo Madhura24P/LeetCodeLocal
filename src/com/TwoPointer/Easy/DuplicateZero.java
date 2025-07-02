@@ -42,7 +42,8 @@ public class DuplicateZero {
 	        int n = arr.length, count = 0;
 
 	        for (int num : arr) {
-	            if (num == 0) {
+
+	        	if (num == 0) {
 	                count++;
 	            }
 	        }
