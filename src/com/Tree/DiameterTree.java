@@ -61,4 +61,25 @@ private static int helper(TreeNode r)
 	return Math.max(left, right)+1;
 }
 
+public int diameterBTOpt(TreeNode root)
+{
+	int diameter[]=new int[1];
+	heightOpt(root,diameter);
+	return diameter[0];
+	
+}
+
+public int heightOpt(TreeNode root,int [] diameter)
+{
+	if(root==null)
+	{
+		return 0;
+	}
+	
+	int lh=heightOpt(root.left, diameter);
+	int rh=heightOpt(root.right, diameter);
+	diameter[0]=Math.max(diameter[0],lh+rh );
+	return 1+Math.max(lh, rh);
+}
+
 }
