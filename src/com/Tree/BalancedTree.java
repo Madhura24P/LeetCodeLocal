@@ -1,6 +1,5 @@
 package com.Tree;
 
-import com.Tree.DiameterTree.TreeNode;
 
 public class BalancedTree {
 	//A height-balanced binary tree is defined as a binary tree where the difference in 
