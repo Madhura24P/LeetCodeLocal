@@ -22,5 +22,14 @@ public class ReversePrefix {
 	     StringBuilder sw_b=new StringBuilder(sw);  
 	     return sw_b.reverse().append(word.substring(op.getAsInt()+1)).toString();
 	    }
+	 
+	 public String revPrefOpt(String word,char ch)
+	 {
+		 int j = word.indexOf(ch);
+	        if (j != -1) {
+	            return new StringBuilder(word.substring(0, j + 1)).reverse().toString() + word.substring(j + 1);
+	        }
+	        return word;
+	 }
 
 }

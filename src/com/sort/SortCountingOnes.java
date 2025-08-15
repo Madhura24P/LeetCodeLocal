@@ -15,7 +15,8 @@ public class SortCountingOnes {
 		
 		Map<Integer,Integer> sortedMap=map.entrySet().
 				stream().
-				sorted(Map.Entry.<Integer,Integer>comparingByValue().thenComparing(Map.Entry.comparingByKey()))
+				sorted(Map.Entry.<Integer,Integer>comparingByValue().
+						thenComparing(Map.Entry.comparingByKey()))
 				.collect(Collectors.toMap(
 		                Map.Entry::getKey,
 		                Map.Entry::getValue,
